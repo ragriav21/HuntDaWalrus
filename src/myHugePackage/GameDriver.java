@@ -3,7 +3,7 @@ package myHugePackage;
 import java.util.Scanner;
 
 public class GameDriver {
-
+	private static GlobalVariables globalVariables = new GlobalVariables();
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter the length/width of the map grid you want: ");
@@ -20,10 +20,12 @@ public class GameDriver {
 			System.out.println("In which direction do you want to move?");
 			String direction = scanner.next();
 			Coordinate newPosition = hero.positionToMoveTo(direction);
-			if(gameMap.isPlayerMoveValid(newPosition)) {
+			String moveValidity = gameMap.isPlayerMoveValid(newPosition);
+			if (globalVariables.getValidMessage().equals(moveValidity)) {
 				hero.updatePosition(newPosition);
+				System.out.println("Hero Moved to " + newPosition.toString());
 			}
-			System.out.println("Hero Moved to" + newPosition.print());
+			else System.out.println(moveValidity);	
 		}
 	}
 	
@@ -36,6 +38,7 @@ public class GameDriver {
 		System.out.println("(he's hunting you, and you can't see him but you can see his victims, hear him, and at worse, smell him), by shooting your arrows in the direction you think he's located");
 		System.out.println("(type 'q' to access your weapons, and then type 'w' to shoot up, 'a' to shoot left, 's' to shoot down, and 'd' to shoot right, with bows reaching up to two spaces in one direction).");
 		System.out.println("Watch out for bats, who'll fly you to random locations, and pits, from which you cannot escape if you fall in!");
+		System.out.println();
 	}
 
 }

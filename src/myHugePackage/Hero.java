@@ -2,7 +2,7 @@ package myHugePackage;
 
 public class Hero {
 	private Coordinate currentPosition;
-	
+		
 	public Hero(Coordinate coordinate) {
 		currentPosition = coordinate;
 	}

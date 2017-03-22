@@ -5,20 +5,21 @@ import java.util.Stack;
 public class GameMap {
 	private int dimension;
 	private Stack<Coordinate> blockedSpaces;
+	private GlobalVariables globalVariables = new GlobalVariables();
 	
 	public GameMap(int dimension) {
 		this.dimension = dimension;
 		blockedSpaces = new Stack<Coordinate>();
 	}
 
-	public boolean isPlayerMoveValid(Coordinate coordinate) {
+	public String isPlayerMoveValid(Coordinate coordinate) {
 		if (!isCoordinateWithinBounds(coordinate))
-			return false;
+			return globalVariables.getOutOfBoundsMessage();
 		for (Coordinate block : blockedSpaces) {
 			if (coordinate.getX() == block.getX() && coordinate.getY() == block.getY()) 
-				return false;
+				return globalVariables.getBlockedSpacesMessage();
 		}
-		return true;
+		return globalVariables.getValidMessage();
 	}
 	
 	public void addRandomBlockedSpaces() {
@@ -28,16 +29,17 @@ public class GameMap {
 			int y = (int) (Math.random() * dimension);
 			Coordinate randomCoordinate = new Coordinate(x, y);
 			addBlockedSpace(randomCoordinate);
+			randomCoordinate.toString();
 		}
 	}
 	
 	public void addBlockedSpace(Coordinate coordinate) {
-		if(isCoordinateWithinBounds(coordinate))
+		if(isCoordinateWithinBounds(coordinate) && blockedSpaces.search(coordinate) == -1)
 			blockedSpaces.push(coordinate);
 	}
 	
 	private boolean isCoordinateWithinBounds(Coordinate coordinate) {
-		return (coordinate.getX() >= dimension || coordinate.getY() >= dimension || 
-				coordinate.getX() < 0 || coordinate.getY() < 0);
+		return ((coordinate.getX() < dimension && coordinate.getY() < dimension) && 
+				(coordinate.getX() >= 0 && coordinate.getY() >= 0));
 	}
 }    

@@ -2,17 +2,20 @@ package myHugePackage;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class GameMapTest {
 
+	private GlobalVariables globalVariables = new GlobalVariables();
+	
 	@Test
 	public void testDoesMoveStayWithinMapDimensions() {
 		GameMap gm = new GameMap(3);
-		assertFalse(gm.isPlayerMoveValid(new Coordinate(3, 0)));
-		assertFalse(gm.isPlayerMoveValid(new Coordinate(0, 3)));
-		assertFalse(gm.isPlayerMoveValid(new Coordinate(-1, -1)));
-		assertTrue(gm.isPlayerMoveValid(new Coordinate(0, 0)));
+		assertEquals(gm.isPlayerMoveValid(new Coordinate(3, 0)), globalVariables.getOutOfBoundsMessage());
+		assertEquals(gm.isPlayerMoveValid(new Coordinate(0, 3)), globalVariables.getOutOfBoundsMessage());
+		assertEquals(gm.isPlayerMoveValid(new Coordinate(-1, -1)), globalVariables.getOutOfBoundsMessage());
+		assertEquals(gm.isPlayerMoveValid(new Coordinate(0, 0)), globalVariables.getValidMessage());
 	}
 	
 	@Test
@@ -20,7 +23,7 @@ public class GameMapTest {
 		GameMap gm = new GameMap(3);
 		Coordinate testCoordinate = new Coordinate(1, 1);
 		gm.addBlockedSpace(testCoordinate);
-		assertFalse(gm.isPlayerMoveValid(testCoordinate));
+		assertEquals(gm.isPlayerMoveValid(testCoordinate), globalVariables.getBlockedSpacesMessage());
 	}
 
 }
