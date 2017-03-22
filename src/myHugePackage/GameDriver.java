@@ -6,7 +6,7 @@ public class GameDriver {
 	private static GlobalVariables globalVariables = new GlobalVariables();
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter the length/width of the map grid you want: ");
+		System.out.print("Enter the length/width (one number for both) of the map grid you want: ");
 		int dimensions = scanner.nextInt();
 		
 		GameMap gameMap = new GameMap(dimensions);
@@ -16,6 +16,7 @@ public class GameDriver {
 		
 		boolean isGameContinuing = true;
 		printDirections();
+		
 		while(isGameContinuing) {
 			System.out.println("In which direction do you want to move?");
 			String direction = scanner.next();
