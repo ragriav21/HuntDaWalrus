@@ -10,6 +10,10 @@ public class Hero {
 	public void updatePosition(Coordinate newPosition) {
 		currentPosition = newPosition;
 	}
+
+	public Coordinate getCurrentPosition() {
+		return currentPosition;
+	}
 	
 	public Coordinate positionToMoveTo(String direction) {
 		int x = currentPosition.getX();
