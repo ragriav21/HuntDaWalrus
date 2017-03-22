@@ -1,4 +1,4 @@
-package myHugePackage;
+package myHugePackage.sut;
 
 public class GlobalVariables {
 	

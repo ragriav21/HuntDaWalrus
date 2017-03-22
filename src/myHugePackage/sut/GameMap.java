@@ -1,4 +1,4 @@
-package myHugePackage;
+package myHugePackage.sut;
 
 import java.util.Stack;
 

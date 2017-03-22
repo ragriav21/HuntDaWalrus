@@ -1,4 +1,4 @@
-package myHugePackage;
+package myHugePackage.sut;
 
 import java.util.Scanner;
 
@@ -11,7 +11,8 @@ public class GameDriver {
 		
 		GameMap gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
-		Coordinate initialPosition = new Coordinate(0, 0);
+		
+		Coordinate initialPosition = generateRandomCoordinate(dimensions);
 		Hero hero = new Hero(initialPosition);
 		
 		boolean isGameContinuing = true;
@@ -40,6 +41,12 @@ public class GameDriver {
 		System.out.println("(type 'q' to access your weapons, and then type 'w' to shoot up, 'a' to shoot left, 's' to shoot down, and 'd' to shoot right, with bows reaching up to two spaces in one direction).");
 		System.out.println("Watch out for bats, who'll fly you to random locations, and pits, from which you cannot escape if you fall in!");
 		System.out.println();
+	}
+	
+	public static Coordinate generateRandomCoordinate(int dimension) {
+		int x = (int) (Math.random() * dimension);
+		int y = (int) (Math.random() * dimension);
+		return new Coordinate(x, y);
 	}
 
 }
