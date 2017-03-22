@@ -26,7 +26,7 @@ public class Coordinate {
 		this.y = y;
 	}
 	
-	public String printPosition() {
+	public String print() {
 		return "(" + x + ", " + y + ")";
 	}
 

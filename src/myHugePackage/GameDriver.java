@@ -8,12 +8,22 @@ public class GameDriver {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter the length/width of the map grid you want: ");
 		int dimensions = scanner.nextInt();
+		
 		GameMap gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
+		Coordinate initialPosition = new Coordinate(0, 0);
+		Hero hero = new Hero(initialPosition);
+		
 		boolean isGameContinuing = true;
 		printDirections();
 		while(isGameContinuing) {
 			System.out.println("In which direction do you want to move?");
+			String direction = scanner.next();
+			Coordinate newPosition = hero.positionToMoveTo(direction);
+			if(gameMap.isPlayerMoveValid(newPosition)) {
+				hero.updatePosition(newPosition);
+			}
+			System.out.println("Hero Moved to" + newPosition.print());
 		}
 	}
 	
