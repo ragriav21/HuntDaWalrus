@@ -18,12 +18,12 @@ public class Walrumpus {
 			this.setCurrentSpace(moveWalrumpus(playerCoordinate));
 		}
 		if (!this.isFeedingTime()) {
-			System.out.println("Walrus moved to "
-					+ this.getCurrentSpace().toString());
+//			System.out.println("Walrus moved to "
+//					+ this.getCurrentSpace().toString());
 		} else if (this.isFeedingTime()) {
 			System.out.println("'OM NOM NOM NOM'");
-			System.out.println("Walrus is stationed at "
-					+ this.getCurrentSpace().toString());
+//			System.out.println("Walrus is stationed at "
+//					+ this.getCurrentSpace().toString());
 		}
 		this.incrementFeedingCounter();
 	}

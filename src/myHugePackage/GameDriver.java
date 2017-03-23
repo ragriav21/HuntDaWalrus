@@ -128,7 +128,7 @@ public class GameDriver {
 					continue;
 				}
 				if (gameDriver.doesShotHitWalrumpus(shootDirection)) {
-					System.out.println("Congratulations!  You killed the Walrus.  You win.");
+					System.out.println("Congratulations! You killed the Walrus. However, you find out it was actually your father. You win.");
 					gameDriver.playerWins();
 					break;
 				} else {
