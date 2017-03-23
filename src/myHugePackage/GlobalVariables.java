@@ -6,6 +6,14 @@ public class GlobalVariables {
 	private String blockedSpacesMessage = "Can't move there - There's a wall.";
 	private String validMessage = "valid";
 	
+	public boolean checkCommandValidityWithShoot(String command) {
+		return ("w".equals(command) || "a".equals(command) || "s".equals(command) || "d".equals(command) || "q".equals(command));
+	}
+	
+	public boolean checkCommandValidityWithoutShoot(String command) {
+		return ("w".equals(command) || "a".equals(command) || "s".equals(command) || "d".equals(command));
+	}
+	
 	public String getOutOfBoundsMessage() {
 		return outOfBoundsMessage;
 	}

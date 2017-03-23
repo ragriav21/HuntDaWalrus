@@ -25,12 +25,25 @@ public class GameDriver {
 		printDirections();
 		
 		while(isGameContinuing) {
-			System.out.println("In which direction do you want to move?");
-			String direction = scanner.next();
-			if(!("w".equals(direction) || "a".equals(direction) || "s".equals(direction) || "d".equals(direction))) {
+			System.out.println("Select what you want to do or where you want to move next.");
+			String command = scanner.next();
+			if(!globalVariables.checkCommandValidityWithShoot(command)) {
 				System.out.println("This is not a valid command.");
+			} else if ("q".equals(command)) {
+				System.out.println("In which direction do you want to shoot?");
+				String shootDirection = scanner.next();
+				if(!globalVariables.checkCommandValidityWithoutShoot(shootDirection)) {
+					System.out.println("This is not a valid command.");
+					continue;
+				}
+				Weapon weapon = new Weapon(shootDirection, hero.getCurrentPosition());
+				if(weapon.isWalrumpusHit(new Coordinate())) {
+					break;
+				} else {
+					System.out.println("You did not hit the Walrus.");
+				}
 			} else {
-				Coordinate newPosition = hero.positionToMoveTo(direction);
+				Coordinate newPosition = hero.positionToMoveTo(command);
 				String moveValidity = gameMap.isPlayerMoveValid(newPosition);
 				if (globalVariables.getValidMessage().equals(moveValidity)) {
 					hero.updatePosition(newPosition);
