@@ -16,7 +16,7 @@ public class GameMap {
 		if (!isCoordinateWithinBounds(coordinate))
 			return globalVariables.getOutOfBoundsMessage();
 		for (Coordinate block : blockedSpaces) {
-			if (coordinate.getX() == block.getX() && coordinate.getY() == block.getY()) 
+			if (coordinate.isEqual(block)) 
 				return globalVariables.getBlockedSpacesMessage();
 		}
 		return globalVariables.getValidMessage();
@@ -26,7 +26,7 @@ public class GameMap {
 		if (!isCoordinateWithinBounds(coordinate))
 			return false;
 		for (Coordinate block : blockedSpaces) {
-			if (coordinate.getX() == block.getX() && coordinate.getY() == block.getY()) 
+			if (coordinate.isEqual(block)) 
 				return false;
 		}
 		return true;

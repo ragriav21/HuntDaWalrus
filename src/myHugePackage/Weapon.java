@@ -6,12 +6,13 @@ public class Weapon {
 		private Stack<Coordinate> shotSpaces;
 		
 		public Weapon(String shootDirection, Coordinate heroCurrentPosition) {
+			shotSpaces = new Stack<Coordinate>();
 			addShotSpaces(shootDirection, heroCurrentPosition);
 		}
 		
 		public boolean isWalrumpusHit(Coordinate walrumpusCoordinate) {
 			for (Coordinate shotSpace : shotSpaces) {
-				if (shotSpace.getX() == walrumpusCoordinate.getX() && shotSpace.getY() == walrumpusCoordinate.getY())
+				if (shotSpace.isEqual(walrumpusCoordinate))
 					return true;
 			}
 			return false;
@@ -23,12 +24,16 @@ public class Weapon {
 			switch (shootDirection.toLowerCase()) {
 				case "w": addShotSpace(new Coordinate(x, y + 1));
 						  addShotSpace(new Coordinate(x, y + 2));
+						  break;
 				case "a": addShotSpace(new Coordinate(x - 1, y));
 						  addShotSpace(new Coordinate(x - 2, y));
+						  break;
 				case "s": addShotSpace(new Coordinate(x, y - 1));
 						  addShotSpace(new Coordinate(x, y - 2));
+						  break;
 				case "d": addShotSpace(new Coordinate(x + 1, y));
 						  addShotSpace(new Coordinate(x + 2, y));
+						  break;
 			}
 		}
 		
