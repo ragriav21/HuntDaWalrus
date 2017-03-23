@@ -85,6 +85,16 @@ public class WalrumpusTest {
 		i++;
 		}
 	}
+	
+	@Test
+	public void test_Calculate_Distance() {
+		tempWalrumpus.setCurrentSpace(c);
+		assertEquals(tempWalrumpus.calculateDistanceToPlayer(new Coordinate(2,3)), 5);
+		assertEquals(tempWalrumpus.calculateDistanceToPlayer(new Coordinate(0,0)), 0);
+		assertEquals(tempWalrumpus.calculateDistanceToPlayer(new Coordinate(1,1)), 2);
+		tempWalrumpus.setCurrentSpace(new Coordinate(2,2));
+		assertEquals(tempWalrumpus.calculateDistanceToPlayer(c), 4);
+	}
 
 
 }

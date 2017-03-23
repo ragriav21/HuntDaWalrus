@@ -29,9 +29,13 @@ public class Coordinate {
 		this.y = y;
 	}
 	
-	@Override
 	public String toString() {
 		return "(" + x + ", " + y + ")";
 	}
+	
+	public Boolean isEqual(Coordinate b) {
+		return ((this.getX() == b.getX()) && (this.getY() == b.getY()));
+	}
+
 
 }

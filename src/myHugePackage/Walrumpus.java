@@ -12,12 +12,27 @@ public class Walrumpus {
 		setCurrentSpace(startSpace);
 		eatingCounter = 1;
 	}
+
 	protected void updateCurrentSpace(Coordinate playerCoordinate) {
 		if (!isFeedingTime()) {
 			this.setCurrentSpace(moveWalrumpus(playerCoordinate));
-			this.incrementFeedingCounter();
 		}
+		if (!this.isFeedingTime()) {
+			System.out.println("Walrus moved to "
+					+ this.getCurrentSpace().toString());
+		} else if (this.isFeedingTime()) {
+			System.out.println("'OM NOM NOM NOM'");
+			System.out.println("Walrus is stationed at "
+					+ this.getCurrentSpace().toString());
+		}
+		this.incrementFeedingCounter();
+	}
+	
+	protected int calculateDistanceToPlayer(Coordinate playerCoordinate) {
+		int xDistance = Math.abs(playerCoordinate.getX() - currentSpace.getX());
+		int yDistance = Math.abs(playerCoordinate.getY() - currentSpace.getY());
 		
+		return xDistance + yDistance;
 	}
 
 	protected void incrementFeedingCounter() {

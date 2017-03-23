@@ -18,8 +18,17 @@ public class GameDriver {
 		GameMap gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
 		
-		Coordinate initialPosition = generateRandomCoordinate(dimensions, gameMap);
-		Hero hero = new Hero(initialPosition);
+		Coordinate initialHeroPosition = generateRandomCoordinate(dimensions, gameMap);
+		Coordinate initialWalrumpusPosition = generateRandomCoordinate(
+				dimensions, gameMap);
+		
+		Hero hero = new Hero(initialHeroPosition);
+		
+		while (initialHeroPosition.isEqual(initialWalrumpusPosition)) {
+			initialWalrumpusPosition = generateRandomCoordinate(dimensions,
+					gameMap);
+		}
+		Walrumpus walrumpus = new Walrumpus(initialWalrumpusPosition);
 		
 		boolean isGameContinuing = true;
 		printDirections();
@@ -37,7 +46,7 @@ public class GameDriver {
 					continue;
 				}
 				Weapon weapon = new Weapon(shootDirection, hero.getCurrentPosition());
-				if(weapon.isWalrumpusHit(new Coordinate())) {
+				if(weapon.isWalrumpusHit(walrumpus.getCurrentSpace())) {
 					break;
 				} else {
 					System.out.println("You did not hit the Walrus.");
@@ -48,8 +57,17 @@ public class GameDriver {
 				if (globalVariables.getValidMessage().equals(moveValidity)) {
 					hero.updatePosition(newPosition);
 					System.out.println("Hero Moved to " + newPosition.toString());
-				}
-				else System.out.println(moveValidity);	
+					walrumpus.updateCurrentSpace(hero.getCurrentPosition());
+					int distance = walrumpus.calculateDistanceToPlayer(hero.getCurrentPosition());
+					System.out.println("Walrumpus is " + distance + " spaces away...");
+					if (distance <= 3) {
+						printWalrumpusWarning(distance);
+					}
+					if (distance == 0) {
+						// Code for game end goes here.
+					}
+				} else
+					System.out.println(moveValidity);
 			}
 		}
 	}
@@ -75,5 +93,32 @@ public class GameDriver {
 		}
 		return initialCoordinate;
 	}
+	
+private static void printWalrumpusWarning(int distance) {
+		
+		String warningMessage  = "";
+		switch (distance) {
+		
+		case 1:
+			warningMessage = globalVariables.getWALRUMPUS_ONE_SPACE_AWAY();
+			System.out.println(warningMessage);
+			break;
+
+		case 2: 
+			warningMessage = globalVariables.getWALRUMPUS_TWO_SPACES_AWAY();
+			System.out.println(warningMessage);
+			break;
+		
+		case 3: 
+			warningMessage = globalVariables.getWALRUMPUS_THREE_SPACES_AWAY();
+			System.out.println(warningMessage);
+			break;
+			
+		default: 
+			break;
+		}
+
+	}
+
 
 }
