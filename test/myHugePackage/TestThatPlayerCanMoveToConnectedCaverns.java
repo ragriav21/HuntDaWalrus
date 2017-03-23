@@ -1,3 +1,5 @@
+package myHugePackage;
+
 public class TestThatPlayerCanMoveToConnectedCaverns {
 	private int x0;
 	private int y0;
@@ -22,6 +24,7 @@ public class TestThatPlayerCanMoveToConnectedCaverns {
 	public void execute() {
 		Coordinate startingPosition = new Coordinate(x0, y0);
 		hero = new Hero(startingPosition);
-		hero.updatePosition(direction);
+		Coordinate endingPosition = hero.positionToMoveTo(direction); 
+		hero.updatePosition(endingPosition);
 	}
 }
