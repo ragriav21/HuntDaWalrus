@@ -5,9 +5,13 @@ public class TestThatPlayerCannotMoveThroughBlocks {
 	private int y0;
 	private int blockX;
 	private int blockY;
+	private int size;
 	private Hero hero;
+	private GameMap gm;
 	private String direction;
-
+	public void setMapSize(int s) {
+		size = s;
+	}
 	public void setX0(int x) {
 		x0 = x;
 	}
@@ -32,10 +36,13 @@ public class TestThatPlayerCannotMoveThroughBlocks {
 		return hero.getCurrentPosition().getY();
 	}
 	public void execute() {
+		gm = new GameMap(size);
 		Coordinate startingPosition = new Coordinate(x0, y0);
 		hero = new Hero(startingPosition);
+		gm.addBlockedSpace(new Coordinate(blockX, blockY));
 		Coordinate endingPosition = hero.positionToMoveTo(direction); 
-		hero.updatePosition(endingPosition);
+		if (gm.isPlayerMoveValid(endingPosition, false))
+			hero.updatePosition(endingPosition);
 	}
 
 }
