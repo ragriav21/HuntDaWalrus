@@ -22,8 +22,8 @@ public class WalrumpusTest {
 	public void test_Move_Walrumpus_Positive_X() {
 		// move in positive x direction
 		tempWalrumpus.updateCurrentSpace(new Coordinate(2, 1));
-		assertEquals(tempWalrumpus.getCurrentSpace().getX(), (int) 1);
-		assertEquals(tempWalrumpus.getCurrentSpace().getY(), (int) 0);
+		assertEquals(tempWalrumpus.getCurrentSpace().getX(), 1);
+		assertEquals(tempWalrumpus.getCurrentSpace().getY(), 0);
 	}
 	
 	
@@ -32,8 +32,8 @@ public class WalrumpusTest {
 		// move in negative x direction
 		tempWalrumpus.setCurrentSpace(c2);
 		tempWalrumpus.updateCurrentSpace(new Coordinate(2, 3));
-		assertEquals(tempWalrumpus.getCurrentSpace().getX(), (int) 3);
-		assertEquals(tempWalrumpus.getCurrentSpace().getY(), (int) 4);
+		assertEquals(tempWalrumpus.getCurrentSpace().getX(), 3);
+		assertEquals(tempWalrumpus.getCurrentSpace().getY(), 4);
 		
 	}
 	
@@ -43,8 +43,8 @@ public class WalrumpusTest {
 		tempWalrumpus.setCurrentSpace(c);
 		tempWalrumpus.setEatingCounter(1);
 		tempWalrumpus.updateCurrentSpace(new Coordinate(1, 2));
-		assertEquals(tempWalrumpus.getCurrentSpace().getY(), (int) 1);
-		assertEquals(tempWalrumpus.getCurrentSpace().getX(), (int) 0);
+		assertEquals(tempWalrumpus.getCurrentSpace().getY(), 1);
+		assertEquals(tempWalrumpus.getCurrentSpace().getX(), 0);
 
 	}
 	
@@ -53,8 +53,8 @@ public class WalrumpusTest {
 		// move in negative y direction
 		tempWalrumpus.setCurrentSpace(c2);
 		tempWalrumpus.updateCurrentSpace(new Coordinate(3, 2));
-		assertEquals(tempWalrumpus.getCurrentSpace().getY(), (int) 3);
-		assertEquals(tempWalrumpus.getCurrentSpace().getX(), (int) 4);
+		assertEquals(tempWalrumpus.getCurrentSpace().getY(), 3);
+		assertEquals(tempWalrumpus.getCurrentSpace().getX(), 4);
 	}
 	
 	@Test
@@ -63,8 +63,8 @@ public class WalrumpusTest {
 		tempWalrumpus.setCurrentSpace(c);
 		tempWalrumpus.setEatingCounter(4);
 		tempWalrumpus.updateCurrentSpace(new Coordinate(1, 1));
-		assertEquals(tempWalrumpus.getCurrentSpace().getX(), (int) 0);
-		assertEquals(tempWalrumpus.getCurrentSpace().getY(), (int) 0);
+		assertEquals(tempWalrumpus.getCurrentSpace().getX(), 0);
+		assertEquals(tempWalrumpus.getCurrentSpace().getY(), 0);
 		
 	}
 	
