@@ -1,12 +1,12 @@
-package myHugePackage.sut;
+package myHugePackage;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import myHugePackage.sut.Coordinate;
-import myHugePackage.sut.GlobalVariables;
-import myHugePackage.sut.Hero;
+import myHugePackage.Coordinate;
+import myHugePackage.GlobalVariables;
+import myHugePackage.Hero;
 
 public class HeroTest {
 	

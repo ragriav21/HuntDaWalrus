@@ -1,4 +1,4 @@
-package myHugePackage.sut;
+package myHugePackage;
 
 import java.util.Scanner;
 
@@ -6,13 +6,19 @@ public class GameDriver {
 	private static GlobalVariables globalVariables = new GlobalVariables();
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter the length/width (one number for both) of the map grid you want: ");
+		System.out.print("Enter the side length (one integer) of the map grid you want: ");
 		int dimensions = scanner.nextInt();
+		
+		while (dimensions <= 1) {
+			System.out.println("Side length must be at least 2.");
+			System.out.print("Enter the side length (one integer) of the map grid you want: ");
+			dimensions = scanner.nextInt();
+		}
 		
 		GameMap gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
 		
-		Coordinate initialPosition = generateRandomCoordinate(dimensions);
+		Coordinate initialPosition = generateRandomCoordinate(dimensions, gameMap);
 		Hero hero = new Hero(initialPosition);
 		
 		boolean isGameContinuing = true;
@@ -21,13 +27,17 @@ public class GameDriver {
 		while(isGameContinuing) {
 			System.out.println("In which direction do you want to move?");
 			String direction = scanner.next();
-			Coordinate newPosition = hero.positionToMoveTo(direction);
-			String moveValidity = gameMap.isPlayerMoveValid(newPosition);
-			if (globalVariables.getValidMessage().equals(moveValidity)) {
-				hero.updatePosition(newPosition);
-				System.out.println("Hero Moved to " + newPosition.toString());
+			if(!("w".equals(direction) || "a".equals(direction) || "s".equals(direction) || "d".equals(direction))) {
+				System.out.println("This is not a valid command.");
+			} else {
+				Coordinate newPosition = hero.positionToMoveTo(direction);
+				String moveValidity = gameMap.isPlayerMoveValid(newPosition);
+				if (globalVariables.getValidMessage().equals(moveValidity)) {
+					hero.updatePosition(newPosition);
+					System.out.println("Hero Moved to " + newPosition.toString());
+				}
+				else System.out.println(moveValidity);	
 			}
-			else System.out.println(moveValidity);	
 		}
 	}
 	
@@ -43,10 +53,14 @@ public class GameDriver {
 		System.out.println();
 	}
 	
-	public static Coordinate generateRandomCoordinate(int dimension) {
+	public static Coordinate generateRandomCoordinate(int dimension, GameMap gameMap) {
 		int x = (int) (Math.random() * dimension);
 		int y = (int) (Math.random() * dimension);
-		return new Coordinate(x, y);
+		Coordinate initialCoordinate = new Coordinate(x, y);
+		while(!gameMap.isPlayerMoveValid(initialCoordinate, true)) {
+			generateRandomCoordinate(dimension, gameMap);
+		}
+		return initialCoordinate;
 	}
 
 }

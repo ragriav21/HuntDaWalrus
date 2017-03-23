@@ -1,13 +1,13 @@
-package myHugePackage.sut;
+package myHugePackage;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import myHugePackage.sut.Coordinate;
-import myHugePackage.sut.GameMap;
-import myHugePackage.sut.GlobalVariables;
+import myHugePackage.Coordinate;
+import myHugePackage.GameMap;
+import myHugePackage.GlobalVariables;
 
 public class GameMapTest {
 

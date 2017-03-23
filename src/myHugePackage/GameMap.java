@@ -1,4 +1,4 @@
-package myHugePackage.sut;
+package myHugePackage;
 
 import java.util.Stack;
 
@@ -20,6 +20,16 @@ public class GameMap {
 				return globalVariables.getBlockedSpacesMessage();
 		}
 		return globalVariables.getValidMessage();
+	}
+	
+	public boolean isPlayerMoveValid(Coordinate coordinate, boolean flag) {
+		if (!isCoordinateWithinBounds(coordinate))
+			return false;
+		for (Coordinate block : blockedSpaces) {
+			if (coordinate.getX() == block.getX() && coordinate.getY() == block.getY()) 
+				return false;
+		}
+		return true;
 	}
 	
 	public void addRandomBlockedSpaces() {

@@ -1,4 +1,4 @@
-package myHugePackage.sut;
+package myHugePackage;
 
 public class Coordinate {
 	
@@ -27,6 +27,10 @@ public class Coordinate {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+	public String toString() {
+		return "(" + x + ", " + y + ")";
 	}
 
 }
