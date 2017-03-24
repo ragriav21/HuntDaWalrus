@@ -26,7 +26,7 @@ public class GameMap {
 		return globalVariables.getValidMessage();
 	}
 	
-	public boolean isPlayerMoveValid(Coordinate coordinate, boolean flag) {
+	public boolean isPlayerMoveValid(Coordinate coordinate, boolean isBooleanReturn) {
 		if (!isCoordinateWithinBounds(coordinate))
 			return false;
 		for (Coordinate block : blockedSpaces) {
@@ -95,8 +95,6 @@ public class GameMap {
 			Coordinate randomCoordinate = new Coordinate(x, y);
 			addBatSpace(randomCoordinate);
 			randomCoordinate.toString();
-			System.out.println("new bat space"+randomCoordinate.toString());
-
 		}
 	}
 	
@@ -126,6 +124,28 @@ public class GameMap {
 	private boolean isCoordinateWithinBounds(Coordinate coordinate) {
 		return ((coordinate.getX() < dimension && coordinate.getY() < dimension) && 
 				(coordinate.getX() >= 0 && coordinate.getY() >= 0));
+	}
+	
+	public boolean isPlayerNextToPit(Coordinate playerCoordinate) {
+		return isPlayerNextToSpecialBlocks(pitSpaces, playerCoordinate);
+	}
+	
+	public boolean isPlayerNextToBats(Coordinate playerCoordinate) {
+		return isPlayerNextToSpecialBlocks(batSpaces, playerCoordinate);
+	}
+	
+	public boolean isPlayerNextToSpecialBlocks(Stack<Coordinate> stack, Coordinate coordinate) {
+		for (Coordinate targetCoordinate : stack) {
+			if (calculateDistanceToSpecialBlocks(targetCoordinate, coordinate) == 1)
+				return true;
+		}
+		return false;
+	}
+	
+	private int calculateDistanceToSpecialBlocks(Coordinate coordinateOne, Coordinate coordinateTwo) {
+		int xDistance = Math.abs(coordinateOne.getX() - coordinateTwo.getX());
+		int yDistance = Math.abs(coordinateOne.getY() - coordinateTwo.getY());
+		return xDistance + yDistance;
 	}
 	
 }    

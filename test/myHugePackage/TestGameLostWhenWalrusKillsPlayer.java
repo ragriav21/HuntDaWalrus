@@ -1,0 +1,41 @@
+package myHugePackage;
+
+public class TestGameLostWhenWalrusKillsPlayer {
+	private GameDriver gameDriver;
+	private int playerX;
+	private int playerY;
+	private int walrusX;
+	private int walrusY;
+	
+	public void setPlayerX(int x) {
+		this.playerX = x;
+	}
+
+	public void setPlayerY(int y) {
+		this.playerY = y;
+	}
+
+	public void setWalrusX(int x) {
+		this.walrusX = x;
+	}
+
+	public void setWalrusY(int y) {
+		this.walrusY = y;
+	}
+	
+	public boolean gameOver() {
+		return gameDriver.isGameOver();
+	}
+	
+	public boolean gameWon() {
+		return gameDriver.isGameWon();
+	}
+	
+	public void execute() {
+		gameDriver = new GameDriver(3);
+		gameDriver.generateHeroPosition(new Coordinate(playerX, playerY));
+		gameDriver.generateWalrumpusPosition(new Coordinate(walrusX, walrusY));
+		if (gameDriver.checkWalrumpusCollision())
+			gameDriver.playerLoses();
+	}
+}
