@@ -17,6 +17,8 @@ public class GameDriver {
 		this.dimensions = dimensions;
 		gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
+		gameMap.addRandomBatSpaces();
+		gameMap.addRandomPitSpaces();
 		gameOver = false;
 		gameWon = false;
 	}
@@ -32,6 +34,18 @@ public class GameDriver {
 					gameMap);
 		}
 		walrumpus = new Walrumpus(initialWalrumpusPosition);
+	}
+	
+	public void batRandomCoordinate() {
+		int x = (int) (Math.random() * this.dimensions);
+		int y = (int) (Math.random() * this.dimensions);
+		Coordinate initialCoordinate = new Coordinate(x, y);
+		if (gameMap.isPlayerMoveBatSpace(initialCoordinate) || gameMap.isPlayerMovePitSpace(initialCoordinate) 
+				|| !gameMap.isPlayerMoveValid(initialCoordinate, true)) {
+			batRandomCoordinate();
+		}
+		this.moveHero(initialCoordinate);
+		
 	}
 	
 	public void generateHeroPosition(Coordinate coordinate) {
@@ -74,7 +88,15 @@ public class GameDriver {
 	}
 	
 	public boolean checkWalrumpusCollision() {
-		return hero.getCurrentPosition().equals(walrumpus.getCurrentSpace());
+		return hero.getCurrentPosition().isEqual(walrumpus.getCurrentSpace());
+	}
+	
+	public boolean checkBatCollision() {
+		return this.gameMap.isPlayerMoveBatSpace(hero.getCurrentPosition());
+	}
+	
+	public boolean checkPitCollision() {
+		return this.gameMap.isPlayerMovePitSpace(hero.getCurrentPosition());
 	}
 	
 	public int findDistanceBetweenHeroAndWalrumpus() {
@@ -101,9 +123,10 @@ public class GameDriver {
 	
 	public static void main (String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("Enter the side length (one integer) of the map grid you want: ");
+		System.out.print("Enter the side length (one integer) of the map grid you want for this session: ");
 		int dimensions = scanner.nextInt();
-		
+		boolean continuePlaying = true;
+		while (continuePlaying) {
 		while (dimensions < 2) {
 			System.out.println("Side length must be at least 2.");
 			System.out.print("Enter the side length (one integer) of the map grid you want: ");
@@ -118,6 +141,7 @@ public class GameDriver {
 			String command = scanner.next();
 			if(!globalVariables.checkCommandValidityWithShoot(command)) {
 				System.out.println("This is not a valid command.");
+				continue;
 			} 
 			// shoot
 			else if ("q".equals(command)) {
@@ -128,7 +152,11 @@ public class GameDriver {
 					continue;
 				}
 				if (gameDriver.doesShotHitWalrumpus(shootDirection)) {
+<<<<<<< HEAD
 					System.out.println("Congratulations! You killed the Walrus. However, you find out it was actually your father. You win.");
+=======
+					System.out.println("Congratulations!  You killed the Walrus.  You win.  For what it's worth.");
+>>>>>>> origin/master
 					gameDriver.playerWins();
 					break;
 				} else {
@@ -139,13 +167,24 @@ public class GameDriver {
 			else {
 				Coordinate newHeroPosition = gameDriver.getNewPosition(command);
 				String moveValidity = gameDriver.checkMoveValidity(newHeroPosition);
+				// Adding clauses for pits and bats.
 				if (globalVariables.getValidMessage().equals(moveValidity)) {
 					gameDriver.moveHero(newHeroPosition);
 					System.out.println("Hero Moved to " + newHeroPosition.toString());
+					System.out.println(gameDriver.checkWalrumpusCollision());
 					if (gameDriver.checkWalrumpusCollision()) {
 						System.out.println("You stumbled upon the Walrus and he ate you. Game Over.");
 						gameDriver.playerLoses();
 						break;
+					}
+					else if (gameDriver.checkPitCollision()) {
+						System.out.println("You have fallen into an impossible gravity well, where you will eventually be ripped apart before you have finished contemplating how stupid you were to hunt a &$%#%#@ Walrus.");
+						gameDriver.playerLoses();
+						break;
+					}
+					else if (gameDriver.checkBatCollision()) {
+						System.out.println("You've run into a load of bats.  A crazy man in a batsuit grabs you from behind and throws you down a hole.");
+						gameDriver.batRandomCoordinate();
 					}
 				} else {
 					System.out.println(moveValidity);
@@ -164,6 +203,12 @@ public class GameDriver {
 				gameDriver.playerLoses();
 				break;
 			}
+		
+		}
+		System.out.println("Do you wish to continue playing?  Press r to start over, press anything else to terminate the game.");
+		String playerResponse = scanner.next();
+		if (!playerResponse.equals("r")) 
+			continuePlaying=false;
 		}
 		scanner.close();
 	}

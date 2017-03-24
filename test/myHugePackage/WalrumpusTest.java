@@ -96,5 +96,40 @@ public class WalrumpusTest {
 		assertEquals(tempWalrumpus.calculateDistanceToPlayer(c), 4);
 	}
 
+	
+	
+	@Test
+	public  void test_Walrumpus_Movement_Is_Linear() {
+
+		int initialDistance;
+		int finalDistance;
+		for (int x = 0; x < 6; x++) {
+			
+			for (int y = 0; y < 6; y++) {
+				
+				for (int wx = 0; wx < 6; wx++) {
+					
+					for (int wy = 0; wy < 6; wy++) {
+						
+						if (!(wx==x && wy==y)) {
+							System.out.println("new test");
+							tempWalrumpus.setCurrentSpace(new Coordinate(wx, wy));
+							tempWalrumpus.setEatingCounter(1);
+							initialDistance = tempWalrumpus.calculateDistanceToPlayer(new Coordinate(x, y));
+							tempWalrumpus.updateCurrentSpace(new Coordinate(x, y));
+							finalDistance = tempWalrumpus.calculateDistanceToPlayer(new Coordinate(x, y));
+							System.out.println("pCoord: "+x+", "+y+" || wCoord: "+wx+", "+wy);
+							System.out.println("init:"
+									+ initialDistance
+									+ " final: "+ finalDistance);
+							assertEquals(initialDistance-finalDistance, 1);
+						}
+						
+					}
+				}
+			}
+		}
+		
+	}
 
 }
