@@ -3,10 +3,7 @@ package myHugePackage;
 public class Walrumpus {
 
 	private int eatingCounter;
-
 	private Coordinate currentSpace;
-
-	private Coordinate newCoordinate;
 
 	public Walrumpus(Coordinate startSpace) {
 		setCurrentSpace(startSpace);
@@ -16,19 +13,8 @@ public class Walrumpus {
 	protected void updateCurrentSpace(Coordinate playerCoordinate) {
 		if (!isFeedingTime()) {
 			this.setCurrentSpace(moveWalrumpus(playerCoordinate));
-		}
-		if (!this.isFeedingTime()) {
-//			System.out.println("Walrus moved to "
-//					+ this.getCurrentSpace().toString());
-			System.out.println("Walrus moved to "
-					+ this.getCurrentSpace().toString());
-		}
-		if (!this.isFeedingTime()) {
-		// The print statement was wrongly placed here, fixed now.
 		} else if (this.isFeedingTime()) {
 			System.out.println("'OM NOM NOM NOM'");
-//			System.out.println("Walrus is stationed at "
-//					+ this.getCurrentSpace().toString());
 		}
 		this.incrementFeedingCounter();
 	}

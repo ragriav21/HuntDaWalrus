@@ -69,7 +69,6 @@ public class GameMap {
 			blockedSpaces.push(coordinate);
 	}
 	
-	// General method for adding coordinates to a stack
 	public void addRandomSpaces(Stack<Coordinate> spaceStack) {
 		int numberOfSpaces = dimension < 4 ? 1 : dimension - 3;
 		for(int i = 0; i < numberOfSpaces; i++) {
@@ -81,7 +80,6 @@ public class GameMap {
 		}
 	}
 	
-	// General method for adding a coordinate to a stack
 	public void addToSpaceStack(Coordinate coordinate, Stack<Coordinate> spacesStack) {
 		if(isCoordinateWithinBounds(coordinate) && blockedSpaces.search(coordinate) == -1 
 				&& batSpaces.search(coordinate) == -1 && pitSpaces.search(coordinate) == -1) {
@@ -115,7 +113,6 @@ public class GameMap {
 			int y = (int) (Math.random() * dimension);
 			Coordinate randomCoordinate = new Coordinate(x, y);
 			addPitSpace(randomCoordinate);
-			System.out.println("new ppit space"+randomCoordinate.toString());
 		}
 	}
 	
