@@ -10,7 +10,7 @@ public class GlobalVariables {
 	private String WALRUMPUS_ONE_SPACE_AWAY = "You smell the wumpus";
 	private String WALRUMPUS_TWO_SPACES_AWAY = "'GRRRRRRR'";
 	private String WALRUMPUS_THREE_SPACES_AWAY = "You see decaying remains of human bodies.";
-	private String batMessage = "You hear a faint whisper... 'I am the night...'";
+	private String batMessage = "You hear a faint whisper: 'I am the night...'";
 	private String pitMessage = "You feel a pit in your stomach...and also somewhere near you.";
 	
 	public String getBatMessage() {

@@ -39,8 +39,5 @@ public class TestBats {
 		gameDriver = new GameDriver(3);
 		gameDriver.generateHeroPosition(new Coordinate(playerX, playerY));
 		gameDriver.generateBatSpace(new Coordinate(batX, batY));
-		if (gameDriver.checkBatCollision()) {
-			gameDriver.batRandomCoordinate();
-		}
 	}
 }

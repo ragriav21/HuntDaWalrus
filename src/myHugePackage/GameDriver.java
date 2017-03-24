@@ -17,10 +17,16 @@ public class GameDriver {
 		this.dimensions = dimensions;
 		gameMap = new GameMap(dimensions);
 		gameMap.addRandomBlockedSpaces();
-		gameMap.addRandomBatSpaces();
-		gameMap.addRandomPitSpaces();
 		gameOver = false;
 		gameWon = false;
+	}
+	
+	public void addRandomBatSpaces() {
+		gameMap.addRandomBatSpaces();
+	}
+	
+	public void addRandomPitSpaces() {
+		gameMap.addRandomPitSpaces();
 	}
 	
 	public void generateRandomStarts() {
@@ -155,6 +161,8 @@ public class GameDriver {
 		}
 		GameDriver gameDriver = new GameDriver(dimensions);
 		gameDriver.generateRandomStarts();
+		gameDriver.addRandomBatSpaces();
+		gameDriver.addRandomPitSpaces();
 		printDirections();
 		boolean isGameContinuing = true;
 		while (isGameContinuing) {
@@ -189,7 +197,7 @@ public class GameDriver {
 					gameDriver.moveHero(newHeroPosition);
 					System.out.println("Hero Moved to " + newHeroPosition.toString());
 					if (gameDriver.checkWalrumpusCollision()) {
-						System.out.println("You stumbled upon the Walrus and he ate you. Game Over.");
+						System.out.println("You stumbled upon the Walrus and he eviscerated you. Game Over.");
 						gameDriver.playerLoses();
 						break;
 					}
