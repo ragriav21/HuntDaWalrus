@@ -16,10 +16,11 @@ public class Walrumpus {
 	protected void updateCurrentSpace(Coordinate playerCoordinate) {
 		if (!isFeedingTime()) {
 			this.setCurrentSpace(moveWalrumpus(playerCoordinate));
-		}
-		if (!this.isFeedingTime()) {
 			System.out.println("Walrus moved to "
 					+ this.getCurrentSpace().toString());
+		}
+		if (!this.isFeedingTime()) {
+		// The print statement was wrongly placed here, fixed now.
 		} else if (this.isFeedingTime()) {
 			System.out.println("'OM NOM NOM NOM'");
 			System.out.println("Walrus is stationed at "
