@@ -120,6 +120,9 @@ public class GameDriver {
 		return gameMap.isPlayerNextToPit(hero.getCurrentPosition());
 	}
 	
+	public Coordinate getCurrentHeroPosition() {
+		return hero.getCurrentPosition();
+	}
 	public void playerLoses() {
 		gameOver = true;
 		gameWon = false;

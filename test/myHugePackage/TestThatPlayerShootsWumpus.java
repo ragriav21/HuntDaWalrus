@@ -33,7 +33,7 @@ public class TestThatPlayerShootsWumpus {
 	}
 
 	public void execute() {
-		GameDriver gameDriver = new GameDriver(3);
+		gameDriver = new GameDriver(3);
 		gameDriver.generateHeroPosition(new Coordinate(playerX, playerY));
 		gameDriver.generateWalrumpusPosition(new Coordinate(walrusX, walrusY));
 	}

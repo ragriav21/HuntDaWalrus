@@ -147,5 +147,6 @@ public class GameMap {
 		int yDistance = Math.abs(coordinateOne.getY() - coordinateTwo.getY());
 		return xDistance + yDistance;
 	}
+
 	
 }    
