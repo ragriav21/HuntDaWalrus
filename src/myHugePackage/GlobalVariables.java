@@ -43,19 +43,19 @@ public class GlobalVariables {
 	public void setWALRUMPUS_ZERO_SPACES_AWAY(String wALRUMPUS_ZERO_SPACES_AWAY) {
 		WALRUMPUS_ZERO_SPACES_AWAY = wALRUMPUS_ZERO_SPACES_AWAY;
 	}
-	public String getWALRUMPUS_ONE_SPACE_AWAY() {
+	public String getWalrumpusOneSpaceAway() {
 		return WALRUMPUS_ONE_SPACE_AWAY;
 	}
 	public void setWALRUMPUS_ONE_SPACE_AWAY(String wALRUMPUS_ONE_SPACE_AWAY) {
 		WALRUMPUS_ONE_SPACE_AWAY = wALRUMPUS_ONE_SPACE_AWAY;
 	}
-	public String getWALRUMPUS_TWO_SPACES_AWAY() {
+	public String getWalrumpusTwoSpacesAway() {
 		return WALRUMPUS_TWO_SPACES_AWAY;
 	}
 	public void setWALRUMPUS_TWO_SPACES_AWAY(String wALRUMPUS_TWO_SPACES_AWAY) {
 		WALRUMPUS_TWO_SPACES_AWAY = wALRUMPUS_TWO_SPACES_AWAY;
 	}
-	public String getWALRUMPUS_THREE_SPACES_AWAY() {
+	public String getWalrumpusThreeSpacesAway() {
 		return WALRUMPUS_THREE_SPACES_AWAY;
 	}
 	public void setWALRUMPUS_THREE_SPACES_AWAY(String wALRUMPUS_THREE_SPACES_AWAY) {

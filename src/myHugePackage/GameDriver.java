@@ -152,11 +152,7 @@ public class GameDriver {
 					continue;
 				}
 				if (gameDriver.doesShotHitWalrumpus(shootDirection)) {
-<<<<<<< HEAD
-					System.out.println("Congratulations! You killed the Walrus. However, you find out it was actually your father. You win.");
-=======
 					System.out.println("Congratulations!  You killed the Walrus.  You win.  For what it's worth.");
->>>>>>> origin/master
 					gameDriver.playerWins();
 					break;
 				} else {
@@ -232,17 +228,17 @@ public class GameDriver {
 		switch (distance) {
 		
 		case 1:
-			warningMessage = globalVariables.getWALRUMPUS_ONE_SPACE_AWAY();
+			warningMessage = globalVariables.getWalrumpusOneSpaceAway();
 			System.out.println(warningMessage);
 			break;
 
 		case 2: 
-			warningMessage = globalVariables.getWALRUMPUS_TWO_SPACES_AWAY();
+			warningMessage = globalVariables.getWalrumpusTwoSpacesAway();
 			System.out.println(warningMessage);
 			break;
 		
 		case 3: 
-			warningMessage = globalVariables.getWALRUMPUS_THREE_SPACES_AWAY();
+			warningMessage = globalVariables.getWalrumpusThreeSpacesAway();
 			System.out.println(warningMessage);
 			break;
 			
