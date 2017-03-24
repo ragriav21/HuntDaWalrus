@@ -33,7 +33,7 @@ public class Coordinate {
 		return "(" + x + ", " + y + ")";
 	}
 	
-	public Boolean isEqual(Coordinate b) {
+	public boolean isEqual(Coordinate b) {
 		return ((this.getX() == b.getX()) && (this.getY() == b.getY()));
 	}
 
